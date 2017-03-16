@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="MatchActivityDialog" parent="AppTheme">
+
+        <!-- <item name="android:padding">0dp</item> -->
+        <!--   <item name="android:layout_margin">0dp</item> -->
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="FullScreenActivity" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

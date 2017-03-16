@@ -1,8 +1,10 @@
-package com.khavronsky.myapplication333;
+package com.khavronsky.myapplication333.questionnaire;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.khavronsky.myapplication333.R;
 
 
 public class Holder extends RecyclerView.ViewHolder {

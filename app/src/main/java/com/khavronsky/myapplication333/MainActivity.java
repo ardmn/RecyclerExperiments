@@ -1,12 +1,13 @@
 package com.khavronsky.myapplication333;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+
+import com.khavronsky.myapplication333.questionnaire.Adapter;
+import com.khavronsky.myapplication333.questionnaire.DialogFrg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     Adapter adapter;
     Button button;
+    DialogFrg dialog;
 
 
     @Override
@@ -23,24 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.but1);
+        dialog = new DialogFrg();
+        dialog.setList(createStringList());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intent);
+                dialog.show(getSupportFragmentManager(), null);
+
             }
         });
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        layoutManager = new LinearLayoutManager(this);
-        adapter = new Adapter();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setNestedScrollingEnabled(true);
-        adapter.setStringList(createStringList());
-        adapter.notifyDataSetChanged();
+
     }
 
-    List createStringList(){
+    List createStringList() {
         List<String> stringList = new ArrayList<>();
         stringList.add("Прибежали в избу дети\n" +
                 "Второпях зовут отца:\n" +

@@ -1,9 +1,11 @@
-package com.khavronsky.myapplication333;
+package com.khavronsky.myapplication333.questionnaire;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.khavronsky.myapplication333.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     @Override
     public int getItemCount() {
         int count = stringList.size();
-//        int count = 5;
+//        int count = 2;
         return count;
     }
 
