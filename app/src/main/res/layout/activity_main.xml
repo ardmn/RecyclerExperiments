@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#30ff0000"
+    android:fitsSystemWindows="true">
+
+    <Button
+        android:id="@+id/but1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="GO TO LIST" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#3000ff00"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv1_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#acdbf2"
+            android:gravity="top"
+            android:text="text1" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv1_up">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <TextView
+            android:id="@+id/tv1_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4f7b91"
+            android:gravity="bottom"
+            android:text="text2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+</FrameLayout>
