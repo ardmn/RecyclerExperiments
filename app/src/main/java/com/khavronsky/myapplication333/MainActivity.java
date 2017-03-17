@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     Adapter adapter;
-    Button button;
+    Button button1;
+    Button button2;
     DialogFrg dialog;
 
 
@@ -24,17 +25,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = (Button) findViewById(R.id.but1);
+        button1 = (Button) findViewById(R.id.but1);
+        button2 = (Button) findViewById(R.id.but_announcement);
         dialog = new DialogFrg();
-        dialog.setList(createStringList());
-        button.setOnClickListener(new View.OnClickListener() {
+        dialog.setOldList(createStringList());
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.showAnnouncement(false);
                 dialog.show(getSupportFragmentManager(), null);
 
             }
         });
-
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.showAnnouncement(true);
+                dialog.show(getSupportFragmentManager(), null);
+            }
+        });
     }
 
     List createStringList() {

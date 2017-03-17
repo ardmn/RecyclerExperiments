@@ -2,12 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:paddingBottom="13dp"
+    android:paddingTop="13dp">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/tv3_item"
-    android:text="text3"
-    />
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="start|top"
+        android:background="@drawable/radiobutton_selection"
+        android:button="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv3_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="text3"
+        android:textSize="16sp" />
 </LinearLayout>
