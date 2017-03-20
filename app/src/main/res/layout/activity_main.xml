@@ -21,6 +21,13 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
-        android:text="GO TO DIALOG" />
+        android:text="GO TO DIALOG 1" />
+    <Button
+        android:id="@+id/but2"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:text="GO TO DIALOG 2" />
 
 </FrameLayout>

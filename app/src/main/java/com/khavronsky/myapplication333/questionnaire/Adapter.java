@@ -1,19 +1,17 @@
 package com.khavronsky.myapplication333.questionnaire;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.khavronsky.myapplication333.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Adapter extends RecyclerView.Adapter<Holder> {
-    private List<String> stringList = new ArrayList<>();
-    private QuestionsModel questions;
+    private QuestionsModel question;
+    private DialogFrg.IQstDialogListener listener;
 
 
     @Override
@@ -24,32 +22,49 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, final int position) { //TODO надо подумать, что делать с final int position
-        holder.setText(stringList.get(position));
-        holder.setDrawable(questions.isMultiChoice());
-        holder.setAnswer(questions.getAnswers().get(position));
+    public void onBindViewHolder(final Holder holder, int position) {
+        holder.setAnswer(question.getAnswers().get(position).getAnswer(), question.getAnswers().get(position).isSelected(), question.isMultiChoice());
+
         holder.subscribeCheckListener(new Holder.ICheckListener() {
             @Override
             public void check(boolean isChecked) {
-                questions.getAnswers()
-                        .get(position)
-                        .setSelected(isChecked);
+                Log.d("123", "check input -> isChecked: " + isChecked);
+                if (!question.isMultiChoice()) {
+                    question.getAnswers()
+                            .get(holder.getAdapterPosition())
+                            .setSelected(true);
+                    for (int i = 0; i < question.getAnswers().size(); i++) {
+                        if (i != holder.getAdapterPosition()) {
+
+                            question.getAnswers()
+                                    .get(i)
+                                    .setSelected(false);
+
+                        }
+                    }
+                } else {
+                    isChecked = !isChecked;
+                    question.getAnswers()
+                            .get(holder.getAdapterPosition())
+                            .setSelected(isChecked);
+                    Log.d("123", "isChecked: " + isChecked);
+                }
+                listener.answersSelected(question);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        int count = stringList.size();
-//        int count = 2;
-        return count;
+        return question != null ? question.getAnswers().size() : 0;
     }
 
-    void setStringList(List stringList) {
-        this.stringList = stringList;
+    void subscribeToIQDListener(DialogFrg.IQstDialogListener listener) {
+        this.listener = listener;
     }
+
 
     void setQuestion(QuestionsModel question) {
-        this.questions = question;
+        this.question = question;
     }
 }

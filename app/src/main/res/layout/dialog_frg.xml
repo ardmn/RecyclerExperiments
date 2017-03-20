@@ -36,15 +36,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="64dp">
 
-                    <Button
-                        android:id="@+id/but2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                    <ImageView
+                        android:id="@+id/qstn_img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:text="GO" />
+                        android:src="@drawable/ic_bounds" />
                 </FrameLayout>
 
                 <TextView
+                    android:id="@+id/qstn_title"
+
                     android:layout_width="wrap_content"
                     android:layout_height="26dp"
                     android:layout_gravity="center"
@@ -54,7 +56,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tv1_up"
+                    android:id="@+id/qstn_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -82,7 +84,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
-                    android:id="@+id/btn_ok"
+                    android:id="@+id/qstn_btn_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -92,11 +94,11 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/btn_cancel"
+                    android:id="@+id/qstn_btn_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_toStartOf="@id/btn_ok"
+                    android:layout_toStartOf="@id/qstn_btn_ok"
                     android:padding="8dp"
                     android:text="ПРОПУСТИТЬ"
                     android:textColor="#a58144"

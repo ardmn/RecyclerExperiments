@@ -14,20 +14,20 @@ public class QuestionsModel {
         private String answer;
         private boolean selected;
 
-        String getAnswer() {
+        public String getAnswer() {
             return answer;
         }
 
-        Answer setAnswer(String answer) {
+        public Answer setAnswer(String answer) {
             this.answer = answer;
             return this;
         }
 
-        boolean isSelected() {
+        public boolean isSelected() {
             return selected;
         }
 
-        Answer setSelected(boolean selected) {
+        public Answer setSelected(boolean selected) {
             this.selected = selected;
             return this;
         }

@@ -36,26 +36,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="64dp">
 
-                    <Button
-                        android:id="@+id/but2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                    <ImageView
+                        android:id="@+id/qstn_img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:text="GO" />
+                        android:src="@drawable/ic_bounds" />
                 </FrameLayout>
 
                 <TextView
+                    android:id="@+id/qstn_title"
                     android:layout_width="wrap_content"
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:id="@+id/tv_announce_title"
                     android:text="Вопрос от ONETRAK"
                     android:textColor="#a58144"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tv_announce_text"
+                    android:id="@+id/qstn_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -66,7 +66,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/btn_ok"
+                    android:id="@+id/qstn_btn_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

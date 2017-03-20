@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/qstn_answer_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -7,12 +8,12 @@
     android:paddingTop="13dp">
 
     <CheckBox
-        android:id="@+id/checkbox"
+        android:id="@+id/my_checkbox"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="start|top"
-        android:background="@drawable/radiobutton_selection"
-        android:button="@android:color/transparent" />
+        android:button="@android:color/transparent"
+        android:clickable="false"/>
 
     <TextView
         android:id="@+id/tv3_item"
@@ -20,5 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="text3"
+        android:textColor="#262a31"
         android:textSize="16sp" />
 </LinearLayout>

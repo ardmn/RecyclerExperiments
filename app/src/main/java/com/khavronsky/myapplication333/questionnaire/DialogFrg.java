@@ -11,21 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.khavronsky.myapplication333.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class DialogFrg extends DialogFragment {
+
+
+    TextView btn_ok;
+    TextView btn_cancel;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     Adapter adapter;
     private QuestionsModel question;
-    private List<String> oldList = new ArrayList<>();
     boolean announcement = false;
-    IQstDialogListener listener;
+    IQstDialogListener dialogListener;
 
     @NonNull
     @Override
@@ -42,11 +45,45 @@ public class DialogFrg extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view;
         if (announcement) {
-
             view = inflater.inflate(R.layout.dialog_frg_announcement, container, false);
+            if (question != null) {
+                init(view);
+            }
+            btn_ok = (TextView) view.findViewById(R.id.qstn_btn_ok);
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
 
         } else {
             view = inflater.inflate(R.layout.dialog_frg, container, false);
+            if (question != null) {
+                init(view);
+            }init(view);
+            btn_ok = (TextView) view.findViewById(R.id.qstn_btn_ok);
+            btn_cancel = (TextView) view.findViewById(R.id.qstn_btn_cancel);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (answerSelected()) {
+                        dialogListener.answersSelected(question);
+                        dismiss();
+                    } else {
+                        Toast.makeText(getContext(), "Ни один вариант не выбран", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialogListener.questionAborted();
+                    dismiss();
+                }
+            });
 
             recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
             layoutManager = new LinearLayoutManager(getActivity());
@@ -54,10 +91,31 @@ public class DialogFrg extends DialogFragment {
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
             adapter.setQuestion(question);
-            adapter.setStringList(oldList);
+            adapter.subscribeToIQDListener(new IQstDialogListener() {
+                @Override
+                public void answersSelected(QuestionsModel answerList) {
+                    question = answerList;
+                    Toast.makeText(getContext(), "Checked", Toast.LENGTH_SHORT).show();
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void questionAborted() {
+                }
+            });
             adapter.notifyDataSetChanged();
         }
         return view;
+    }
+
+    private void init(View view) {
+        ImageView imageView = (ImageView) view.findViewById(R.id.qstn_img);
+        TextView title = (TextView) view.findViewById(R.id.qstn_title);
+        TextView questionText = (TextView) view.findViewById(R.id.qstn_text);
+
+        imageView.setBackgroundResource(question.getImgResource());
+        title.setText(question.getTitle());
+        questionText.setText(question.getQuestion());
     }
 //    @Override
 //    public void onStart() {
@@ -67,7 +125,13 @@ public class DialogFrg extends DialogFragment {
 //        getDialog().getWindow().setBackgroundDrawable(null);
 //    }
 
-
+    /**
+     * true - информационный диалог без списка ответов, с единственной кнопкой "OK"
+     * По умолчанию показывается анонс. Для вставки другого текста надо заполнить:
+     * .setTitle - заголовок,  .setImgResource - изображение,  .setQuestion - информационный текст
+     * <p>
+     * false - диалог с вариантами ответов из QuestionsModel
+     */
     public void showAnnouncement(boolean isAnnouncement) {
         announcement = isAnnouncement;
     }
@@ -76,15 +140,21 @@ public class DialogFrg extends DialogFragment {
         this.question = question;
     }
 
-    public void setOldList(List<String> oldList) {
-        this.oldList = oldList;
-    }
-
-    public void subscribeToIQDListener(IQstDialogListener listener){
-        this.listener = listener;
+    public void subscribeToIQDListener(IQstDialogListener listener) {
+        this.dialogListener = listener;
     }
 
     public interface IQstDialogListener {
         void answersSelected(QuestionsModel answerList);
+
+        void questionAborted();
+    }
+
+    boolean answerSelected() {
+        for (QuestionsModel.Answer answer :
+                question.getAnswers()) {
+            if (answer.isSelected()) return true;
+        }
+        return false;
     }
 }
