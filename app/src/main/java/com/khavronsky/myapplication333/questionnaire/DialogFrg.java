@@ -20,7 +20,7 @@ import com.khavronsky.myapplication333.R;
 
 public class DialogFrg extends DialogFragment {
 
-
+// todo по возможности свойтва класса седалть private
     TextView btn_ok;
     TextView btn_cancel;
     RecyclerView recyclerView;
@@ -44,6 +44,8 @@ public class DialogFrg extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view;
+        
+        // todo ветку по true - убрать 
         if (announcement) {
             view = inflater.inflate(R.layout.dialog_frg_announcement, container, false);
             if (question != null) {
@@ -59,6 +61,7 @@ public class DialogFrg extends DialogFragment {
 
         } else {
             view = inflater.inflate(R.layout.dialog_frg, container, false);
+            //todo зачем это условие ? если все равно вызывается init(view); ???
             if (question != null) {
                 init(view);
             }init(view);
@@ -92,6 +95,8 @@ public class DialogFrg extends DialogFragment {
             recyclerView.setAdapter(adapter);
             adapter.setQuestion(question);
             adapter.subscribeToIQDListener(new IQstDialogListener() {
+                
+                //todo зачем question = answerList; ???
                 @Override
                 public void answersSelected(QuestionsModel answerList) {
                     question = answerList;
@@ -103,11 +108,14 @@ public class DialogFrg extends DialogFragment {
                 public void questionAborted() {
                 }
             });
+            
+             //todo зачем adapter.notifyDataSetChanged();
             adapter.notifyDataSetChanged();
         }
         return view;
     }
 
+    // todo не пойму зачем этот метод если часть кода в нем , часть в другом ...
     private void init(View view) {
         ImageView imageView = (ImageView) view.findViewById(R.id.qstn_img);
         TextView title = (TextView) view.findViewById(R.id.qstn_title);
@@ -135,18 +143,19 @@ public class DialogFrg extends DialogFragment {
     public void showAnnouncement(boolean isAnnouncement) {
         announcement = isAnnouncement;
     }
-
+// todo - удалить метод
     public void setQuestion(QuestionsModel question) {
         this.question = question;
     }
 
+    //todo поменять на setListener
     public void subscribeToIQDListener(IQstDialogListener listener) {
         this.dialogListener = listener;
     }
 
     public interface IQstDialogListener {
         void answersSelected(QuestionsModel answerList);
-
+//todo передавать QuestionsModel
         void questionAborted();
     }
 
