@@ -24,8 +24,9 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     @Override
     public void onBindViewHolder(final Holder holder, int position) {
         holder.setAnswer(question.getAnswers().get(position).getAnswer(), question.getAnswers().get(position).isSelected(), question.isMultiChoice());
-
+// todo зачем постоянно созвать анонимный класс ?
         holder.subscribeCheckListener(new Holder.ICheckListener() {
+            //todo логика конечно тут жесть надо упрощать 
             @Override
             public void check(boolean isChecked) {
                 Log.d("123", "check input -> isChecked: " + isChecked);
@@ -54,16 +55,17 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
         });
     }
 
+    //todo а почему нет проверки  question.getAnswers() на null тогда ?
     @Override
     public int getItemCount() {
         return question != null ? question.getAnswers().size() : 0;
     }
-
+// todo название метода
     void subscribeToIQDListener(DialogFrg.IQstDialogListener listener) {
         this.listener = listener;
     }
 
-
+//todo двайте будем передавать QuestionsModel в конструкторе ?
     void setQuestion(QuestionsModel question) {
         this.question = question;
     }
