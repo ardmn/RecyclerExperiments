@@ -23,7 +23,8 @@ class Holder extends RecyclerView.ViewHolder {
         answerItem = view.findViewById(R.id.qstn_answer_item);
 
     }
-
+//todo вот сколько вызывается setOnClickListener и создается ананимный класс ? :)
+    //todo listener на всякий случай я бы проверял на null 
     void setAnswer(String text, boolean selected, boolean multiChoosingType) {
 
         tv_item.setText(text);
@@ -38,6 +39,7 @@ class Holder extends RecyclerView.ViewHolder {
         });
     }
 
+    //todo используй котороткую форму условного оператора типа : return multiChoice?CheckBoxType.CHECK_TYPE.getRes() : ... ;
     private int setCheckBoxDrawable(boolean multiChoice) {
         CheckBoxType drawable;
         if (multiChoice) {
@@ -49,6 +51,7 @@ class Holder extends RecyclerView.ViewHolder {
         return drawable.getRes();
     }
 
+    //todo вот не нравится мне subscribe это больше в стиле rx так что давай заменим на set
     public void subscribeCheckListener(ICheckListener listener) {
         this.listener = listener;
     }
@@ -57,6 +60,7 @@ class Holder extends RecyclerView.ViewHolder {
         void check(boolean isChecked);
     }
 
+    //todo enum замени на @IntDef
     private enum CheckBoxType {
         RADIO_TYPE(R.drawable.radiobutton_selection),
         CHECK_TYPE(R.drawable.checkbox_selection);
