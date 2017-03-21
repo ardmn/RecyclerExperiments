@@ -1,9 +1,10 @@
 package com.khavronsky.myapplication333.questionnaire;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class QuestionsModel {
+public class QuestionsModel implements Serializable {
     private int imgResource;
     private String title;
     private String question;

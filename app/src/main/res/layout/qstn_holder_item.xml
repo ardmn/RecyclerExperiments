@@ -8,7 +8,7 @@
     android:paddingTop="13dp">
 
     <CheckBox
-        android:id="@+id/my_checkbox"
+        android:id="@+id/qstn_checkbox"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="start|top"
@@ -16,7 +16,7 @@
         android:clickable="false"/>
 
     <TextView
-        android:id="@+id/tv3_item"
+        android:id="@+id/qstn_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

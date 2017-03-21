@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialog_announcement"
+    android:id="@+id/qstn_announcement"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80000000">
@@ -50,7 +50,6 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Вопрос от ONETRAK"
                     android:textColor="#a58144"
                     android:textSize="16sp" />
 
@@ -61,7 +60,6 @@
                     android:layout_gravity="center"
                     android:gravity="start"
                     android:paddingBottom="20dp"
-                    android:text="Теперь в приложении есть рубрика «Вопрос от Onetrak». Ваше участие в опросе поможет сделать наш продукт лучше."
                     android:textColor="#262a31"
                     android:textSize="16sp" />
 
